@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TripPlanner</string>
+    <string name="action_settings">设置</string>
+    <string name="my_trips">我的行程</string>
+    <string name="plan_new_trip">计划新的行程</string>
+    <string name="inspire_me">给我灵感</string>
+    <string name="where_are_you_headed">你要去哪里？</string>
+</resources>
