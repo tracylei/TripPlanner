@@ -43,13 +43,14 @@ public class PlanTrip extends AppCompatActivity
     private PlaceAutocompleteAdapter mAdapter;
 
     private AutoCompleteTextView mAutocompleteView;
+    private AutoCompleteTextView mAutocompleteView1;
 
     private TextView mPlaceDetailsText;
 
     private TextView mPlaceDetailsAttribution;
 
-    private static final LatLngBounds BOUNDS_GREATER_SYDNEY = new LatLngBounds(
-            new LatLng(-34.041458, 150.790100), new LatLng(-33.682247, 151.383362));
+    private static final LatLngBounds BOUNDS = new LatLngBounds(
+            new LatLng(-85, -180), new LatLng(85, 180));
 
 
     @Override
@@ -70,28 +71,40 @@ public class PlanTrip extends AppCompatActivity
         // Retrieve the AutoCompleteTextView that will display Place suggestions.
         mAutocompleteView = (AutoCompleteTextView)
                 findViewById(R.id.autocomplete_places);
+        mAutocompleteView1 = (AutoCompleteTextView)
+                findViewById(R.id.autocomplete_places1);
 
         // Register a listener that receives callbacks when a suggestion has been selected
         mAutocompleteView.setOnItemClickListener(mAutocompleteClickListener);
+        mAutocompleteView1.setOnItemClickListener(mAutocompleteClickListener);
 
         // Retrieve the TextViews that will display details and attributions of the selected place.
-        mPlaceDetailsText = (TextView) findViewById(R.id.place_details);
-        mPlaceDetailsAttribution = (TextView) findViewById(R.id.place_attribution);
+        //mPlaceDetailsText = (TextView) findViewById(R.id.place_details);
+        //mPlaceDetailsAttribution = (TextView) findViewById(R.id.place_attribution);
 
         // Set up the adapter that will retrieve suggestions from the Places Geo Data API that cover
         // the entire world.
         mAdapter = new PlaceAutocompleteAdapter(this, android.R.layout.simple_list_item_1,
-                mGoogleApiClient, BOUNDS_GREATER_SYDNEY, null);
+                mGoogleApiClient, BOUNDS, null);
         mAutocompleteView.setAdapter(mAdapter);
+        mAutocompleteView1.setAdapter(mAdapter);
 
         // Set up the 'clear text' button that clears the text in the autocomplete view
         Button clearButton = (Button) findViewById(R.id.button_clear);
+        Button clearButton1 = (Button) findViewById(R.id.button_clear1);
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAutocompleteView.setText("");
             }
         });
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAutocompleteView1.setText("");
+            }
+        });
+
     }
 
 
@@ -150,18 +163,19 @@ public class PlanTrip extends AppCompatActivity
             final Place place = places.get(0);
 
             // Format details of the place for display and show it in a TextView.
-            mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(),
+            /*
+                    mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(),
                     place.getId(), place.getAddress(), place.getPhoneNumber(),
                     place.getWebsiteUri()));
-
+            */
             // Display the third party attributions if set.
-            final CharSequence thirdPartyAttribution = places.getAttributions();
-            if (thirdPartyAttribution == null) {
-                mPlaceDetailsAttribution.setVisibility(View.GONE);
-            } else {
-                mPlaceDetailsAttribution.setVisibility(View.VISIBLE);
-                mPlaceDetailsAttribution.setText(Html.fromHtml(thirdPartyAttribution.toString()));
-            }
+//            final CharSequence thirdPartyAttribution = places.getAttributions();
+//            if (thirdPartyAttribution == null) {
+//                DetailsAttribution.setVisibility(View.GONE);
+//            } else {
+//                mPlaceDetailsAttribution.setVisibility(View.VISIBLE);
+//                mPlaceDetailsAttribution.setText(Html.fromHtml(thirdPartyAttribution.toString()));
+//            }
 
             //Log.i(TAG, "Place details received: " + place.getName());
 
@@ -182,7 +196,7 @@ public class PlanTrip extends AppCompatActivity
 
         //Log.e(TAG, "onConnectionFailed: ConnectionResult.getErrorCode() = "+ connectionResult.getErrorCode());
 
-        // TODO(Developer): Check error code and notify the user of error state and resolution.
+
         Toast.makeText(this,
                 "Could not connect to Google API Client: Error " + connectionResult.getErrorCode(),
                 Toast.LENGTH_SHORT).show();
