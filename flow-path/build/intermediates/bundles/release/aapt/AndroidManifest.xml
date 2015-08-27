@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    package="flow.path"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionName="0.13-SNAPSHOT" >
+
+    <uses-sdk android:minSdkVersion="14" />
+
+</manifest>
