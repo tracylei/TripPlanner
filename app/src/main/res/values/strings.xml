@@ -4,7 +4,7 @@
     <string name="my_trips">My Trips</string>
     <string name="plan_new_trip">Plan New Trip</string>
     <string name="inspire_me">Inspire Me</string>
-    <string name="where_are_you_headed">Where are you headed?</string>
+    <string name="where_do_you_plan_to_go">Where are do you plan to go?</string>
     <string name="clear_text">Clear</string>
     <string name="autocomplete_hint">Enter place name or address</string>
     <string name="add_place">Add a destination</string>

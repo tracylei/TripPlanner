@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 
 
 /**
@@ -38,10 +37,5 @@ public class PlanTrip extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.dest1_holder, daFragment, "Destination 1 autocomplete box");
         transaction.commit();
-    }
-    public void clearText (View v){
-        // Set up the 'clear text' button that clears the text in the autocomplete view
-        ((AutoCompleteTextView) v).setText("");
-
     }
 }

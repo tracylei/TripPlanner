@@ -3,46 +3,8 @@
      android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF00BB">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/where_are_you_starting_from"
-            android:layout_gravity="center_horizontal"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:id="@+id/starting_place_holder">
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/where_are_you_headed"
-            android:layout_margin="16dp"
-            android:layout_gravity="center_horizontal"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_horizontal"
-            android:id="@+id/dest1_holder">
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
-            android:id="@+id/additional_dest_holder">
-        </LinearLayout>
 
-
-    </LinearLayout>
+   <include layout="@layout/enter_address_layout"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

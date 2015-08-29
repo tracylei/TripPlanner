@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,6 +81,15 @@ public class DestinationAutocompleteFragment
         mAdapter = new PlaceAutocompleteAdapter(getActivity(), android.R.layout.simple_list_item_1,
                 mGoogleApiClient, BOUNDS, null);
         mAutocompleteView.setAdapter(mAdapter);
+
+        // Set up the 'clear text' button that clears the text in the autocomplete view
+        Button clearButton = (Button) getActivity().findViewById(R.id.button_clear1);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAutocompleteView.setText("");
+            }
+        });
 
 
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -74,24 +75,24 @@ public class PlaceAutocompleteFragment
         // Register a listener that receives callbacks when a suggestion has been selected
         mAutocompleteView.setOnItemClickListener(mAutocompleteClickListener);
 
-//        // Retrieve the TextViews that will display details and attributions of the selected place.
-//        //mPlaceDetailsText = (TextView) findViewById(R.id.place_details);
-//        //mPlaceDetailsAttribution = (TextView) findViewById(R.id.place_attribution);
-//
-//        // Set up the adapter that will retrieve suggestions from the Places Geo Data API that cover
-//        // the entire world.
-//        mAdapter = new PlaceAutocompleteAdapter(getActivity(), android.R.layout.simple_list_item_1,
-//                mGoogleApiClient, BOUNDS, null);
-//        mAutocompleteView.setAdapter(mAdapter);
-//
-//        // Set up the 'clear text' button that clears the text in the autocomplete view
-//        Button clearButton = (Button) getActivity().findViewById(R.id.button_clear);
-//        clearButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mAutocompleteView.setText("");
-//            }
-//        });
+        // Retrieve the TextViews that will display details and attributions of the selected place.
+        //mPlaceDetailsText = (TextView) findViewById(R.id.place_details);
+        //mPlaceDetailsAttribution = (TextView) findViewById(R.id.place_attribution);
+
+        // Set up the adapter that will retrieve suggestions from the Places Geo Data API that cover
+        // the entire world.
+        mAdapter = new PlaceAutocompleteAdapter(getActivity(), android.R.layout.simple_list_item_1,
+                mGoogleApiClient, BOUNDS, null);
+        mAutocompleteView.setAdapter(mAdapter);
+
+        // Set up the 'clear text' button that clears the text in the autocomplete view
+        Button clearButton = (Button) getActivity().findViewById(R.id.button_clear);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAutocompleteView.setText("");
+            }
+        });
 
     }
 
