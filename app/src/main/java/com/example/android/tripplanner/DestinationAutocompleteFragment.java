@@ -28,7 +28,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 /**
  * Created by tracylei on 2015-08-26.
  */
-public class PlaceAutocompleteFragment
+public class DestinationAutocompleteFragment
         extends Fragment implements GoogleApiClient.OnConnectionFailedListener{
 
     /**
@@ -46,20 +46,18 @@ public class PlaceAutocompleteFragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.places_autocomplete_layout, container, false);
+        return inflater.inflate(R.layout.destination_autocomplete_layout, container, false);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
     // Construct a GoogleApiClient for the {@link Places#GEO_DATA_API} using AutoManage
         // functionality, which automatically sets up the API client to handle Activity lifecycle
         // events. If your activity does not extend FragmentActivity, make sure to call connect()
         // and disconnect() explicitly.
         mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
-                .enableAutoManage(getActivity(), 0 /* clientId */, this)
                 .addApi(Places.GEO_DATA_API)
                 .build();
 
@@ -67,34 +65,39 @@ public class PlaceAutocompleteFragment
 
         // Retrieve the AutoCompleteTextView that will display Place suggestions.
         mAutocompleteView = (AutoCompleteTextView)
-                getActivity().findViewById(R.id.autocomplete_places);
-
+                getActivity().findViewById(R.id.autocomplete_places1);
 
 
         // Register a listener that receives callbacks when a suggestion has been selected
         mAutocompleteView.setOnItemClickListener(mAutocompleteClickListener);
 
-//        // Retrieve the TextViews that will display details and attributions of the selected place.
-//        //mPlaceDetailsText = (TextView) findViewById(R.id.place_details);
-//        //mPlaceDetailsAttribution = (TextView) findViewById(R.id.place_attribution);
-//
-//        // Set up the adapter that will retrieve suggestions from the Places Geo Data API that cover
-//        // the entire world.
-//        mAdapter = new PlaceAutocompleteAdapter(getActivity(), android.R.layout.simple_list_item_1,
-//                mGoogleApiClient, BOUNDS, null);
-//        mAutocompleteView.setAdapter(mAdapter);
-//
-//        // Set up the 'clear text' button that clears the text in the autocomplete view
-//        Button clearButton = (Button) getActivity().findViewById(R.id.button_clear);
-//        clearButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mAutocompleteView.setText("");
-//            }
-//        });
+        // Retrieve the TextViews that will display details and attributions of the selected place.
+        //mPlaceDetailsText = (TextView) findViewById(R.id.place_details);
+        //mPlaceDetailsAttribution = (TextView) findViewById(R.id.place_attribution);
+
+        // Set up the adapter that will retrieve suggestions from the Places Geo Data API that cover
+        // the entire world.
+        mAdapter = new PlaceAutocompleteAdapter(getActivity(), android.R.layout.simple_list_item_1,
+                mGoogleApiClient, BOUNDS, null);
+        mAutocompleteView.setAdapter(mAdapter);
+
+
+
+
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mGoogleApiClient.disconnect();
+    }
 
     /**
      * Listener that handles selections from suggestions from the AutoCompleteTextView that
@@ -102,7 +105,7 @@ public class PlaceAutocompleteFragment
      * Gets the place id of the selected item and issues a request to the Places Geo Data API
      * to retrieve more details about the place.
      *
-     * @see com.google.android.gms.location.places.GeoDataApi#getPlaceById(com.google.android.gms.common.api.GoogleApiClient,
+     * @see com.google.android.gms.location.places.GeoDataApi#getPlaceById(GoogleApiClient,
      * String...)
      */
     private AdapterView.OnItemClickListener mAutocompleteClickListener
@@ -129,8 +132,13 @@ public class PlaceAutocompleteFragment
             Toast.makeText(getActivity().getApplicationContext(), "Clicked: " + item.description,
                     Toast.LENGTH_SHORT).show();
             //Log.i(TAG, "Called getPlaceById to get Place details for " + item.placeId);
+
+
+
         }
     };
+
+
 
     /**
      * Callback for results from a Places Geo Data API query that shows the first place result in
