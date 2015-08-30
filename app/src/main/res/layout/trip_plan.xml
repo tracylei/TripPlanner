@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
      android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FF00BB">
+    android:layout_height="match_parent">
 
-   <include layout="@layout/enter_address_layout"/>
-
-    <RelativeLayout
+    <include layout="@layout/app_bar"
+        android:id="@+id/app_bar" />
+    <include layout="@layout/enter_address_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/next"
-            android:layout_alignParentBottom="true"/>
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@id/app_bar"/>
 
-</FrameLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

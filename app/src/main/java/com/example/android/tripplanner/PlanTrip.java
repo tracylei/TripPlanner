@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 
@@ -15,6 +16,7 @@ import android.view.View;
 
 public class PlanTrip extends AppCompatActivity {
 
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,9 @@ public class PlanTrip extends AppCompatActivity {
         transaction.add(R.id.starting_place_holder, paFragment, "Starting place autocomplete box");
         transaction.add(R.id.dest1_holder,daFragment, "Destination 1 autocomplete box");
         transaction.commit();
+
+      //  toolbar = (Toolbar) findViewById(R.id.app_bar);
+       // setSupportActionBar(toolbar);
     }
 
 
