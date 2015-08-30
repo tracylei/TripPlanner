@@ -30,8 +30,8 @@ public class PlanTrip extends AppCompatActivity {
         transaction.add(R.id.dest1_holder,daFragment, "Destination 1 autocomplete box");
         transaction.commit();
 
-      //  toolbar = (Toolbar) findViewById(R.id.app_bar);
-       // setSupportActionBar(toolbar);
+        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
     }
 
 
