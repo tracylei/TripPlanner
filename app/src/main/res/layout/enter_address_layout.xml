@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/where_are_you_starting_from"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/abc_text_size_medium_material"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +23,8 @@
         android:layout_height="wrap_content"
         android:text="@string/where_do_you_plan_to_go"
         android:layout_margin="16dp"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/abc_text_size_medium_material"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
