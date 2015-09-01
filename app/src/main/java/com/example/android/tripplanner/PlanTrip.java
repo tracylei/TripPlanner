@@ -22,6 +22,7 @@ public class PlanTrip extends AppCompatActivity {
     private int destCount;
     private LinearLayout screen1;
     private RelativeLayout screen2;
+    private int currScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,8 @@ public class PlanTrip extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        destCount=1;
+        destCount = 1;
+        currScreen = 1;
     }
 
 
@@ -60,5 +62,25 @@ public class PlanTrip extends AppCompatActivity {
         screen2 = (RelativeLayout) findViewById(R.id.screen2);
         screen1.setVisibility(View.GONE);
         screen2.setVisibility(View.VISIBLE);
+        currScreen = 2;
+    }
+
+    public void secondNext (View v){
+        screen2 = (RelativeLayout) findViewById(R.id.screen2);
+        screen2.setVisibility(View.GONE);
+        currScreen = 3;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (currScreen == 1)
+            super.onBackPressed();
+        else if (currScreen == 2){
+            screen1 = (LinearLayout) findViewById(R.id.screen1);
+            screen2 = (RelativeLayout) findViewById(R.id.screen2);
+            screen1.setVisibility(View.VISIBLE);
+            screen2.setVisibility(View.GONE);
+            currScreen = 1;
+        }
     }
 }
