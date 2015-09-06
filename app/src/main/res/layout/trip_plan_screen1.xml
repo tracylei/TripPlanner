@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:layout_weight="1"
-            android:hint="Enter number of days"/>
+            android:hint="@string/enter_number_of_days"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
