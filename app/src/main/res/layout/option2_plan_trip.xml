@@ -1,55 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <include layout="@layout/app_bar"
         android:id="@+id/app_bar"/>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/app_bar_height"
-        android:id="@+id/screen1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
             <TextView
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="@string/name_your_trip"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_large"
+                android:textSize="@dimen/abc_text_size_headline_material" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/trip_name"
+                android:inputType="text"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:hint="@string/enter_trip_name"
+                android:textSize="@dimen/abc_text_size_medium_material"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
                 android:text="@string/how_long_is_your_trip"
                 android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_marginLeft="12dp"
-                android:textSize="@dimen/abc_text_size_medium_material"/>
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_large"
+                android:textSize="@dimen/abc_text_size_headline_material"/>
             <EditText
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/num_days"
                 android:inputType="number"
-                android:layout_weight="1"
-                android:hint="Enter number of days"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:hint="@string/enter_number_of_days"
+                android:textSize="@dimen/abc_text_size_medium_material"/>
+
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/what_is_your_budget"
                 android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_marginLeft="12dp"
-                android:textSize="@dimen/abc_text_size_medium_material"/>
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_large"
+                android:textSize="@dimen/abc_text_size_headline_material"/>
             <EditText
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/budget"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
                 android:inputType="number"
-                android:layout_weight="1"
-                android:hint="Enter $ amount"/>
-        </LinearLayout>
+                android:hint="Enter $ amount"
+                android:textSize="@dimen/abc_text_size_medium_material"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -57,11 +67,10 @@
                 android:id="@+id/firstNext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/next"
+                android:text="@string/create_trip"
                 android:layout_alignParentBottom="true"
-                android:onClick="firstNext"/>
+                android:onClick="createTrip"/>
         </RelativeLayout>
-    </LinearLayout>
     <RelativeLayout
         android:id="@+id/screen2"
         android:visibility="gone"
@@ -81,4 +90,4 @@
             android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
-</FrameLayout>
+</LinearLayout>

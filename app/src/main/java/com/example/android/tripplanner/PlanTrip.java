@@ -7,8 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.EditText;
 
 
 /**
@@ -19,10 +18,11 @@ import android.widget.RelativeLayout;
 public class PlanTrip extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private int destCount;
-    private LinearLayout screen1;
-    private RelativeLayout screen2;
-    private int currScreen;
+    private DatabaseAdapter dbAdapter;
+    private EditText tripName;
+    private EditText numDays;
+    private EditText budget;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,53 +34,38 @@ public class PlanTrip extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.add(R.id.starting_place_holder, paFragment, "Starting place autocomplete box");
-        transaction.add(R.id.dest1_holder,daFragment, "Destination 1 autocomplete box");
+        transaction.add(R.id.dest1_holder, daFragment, "Destination 1 autocomplete box");
         transaction.commit();
 
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
-        destCount = 1;
-        currScreen = 1;
+
+        tripName = (EditText)findViewById(R.id.trip_name);
+        numDays = (EditText)findViewById(R.id.num_days);
+        budget = (EditText)findViewById(R.id.budget);
+        dbAdapter = new DatabaseAdapter(this);
     }
 
-
-    //Plus button click on fragment
-    public void addDest(View v) {
-        if (destCount < 6) {
-            DestinationAutocompleteFragment daFragment = new DestinationAutocompleteFragment();
-            FragmentManager manager = getSupportFragmentManager();
-            FragmentTransaction transaction = manager.beginTransaction();
-            transaction.add(R.id.dest1_holder, daFragment, "Destination 1 autocomplete box");
-            transaction.commit();
-            destCount++;
+    public void createTrip (View view){
+        long id = dbAdapter.insertData(tripName.getText().toString(),
+                Integer.parseInt(numDays.getText().toString()),
+                Integer.parseInt(budget.getText().toString()));
+        if (id == -1){
+            ToastMessage.message(this,"Trip was not added successfully");
+        }
+        else{
+            ToastMessage.message(this,"Trip added successfully");
         }
     }
-
-    //Next button click on screen 1
-    public void firstNext(View v){
-        screen1 = (LinearLayout) findViewById(R.id.screen1);
-        screen2 = (RelativeLayout) findViewById(R.id.screen2);
-        screen1.setVisibility(View.GONE);
-        screen2.setVisibility(View.VISIBLE);
-        currScreen = 2;
-    }
-
-    public void secondNext (View v){
-        screen2 = (RelativeLayout) findViewById(R.id.screen2);
-        screen2.setVisibility(View.GONE);
-        currScreen = 3;
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (currScreen == 1)
-            super.onBackPressed();
-        else if (currScreen == 2){
-            screen1 = (LinearLayout) findViewById(R.id.screen1);
-            screen2 = (RelativeLayout) findViewById(R.id.screen2);
-            screen1.setVisibility(View.VISIBLE);
-            screen2.setVisibility(View.GONE);
-            currScreen = 1;
-        }
-    }
+//    //Plus button click on fragment
+//    public void addDest(View v) {
+//        if (destCount < 6) {
+//            DestinationAutocompleteFragment daFragment = new DestinationAutocompleteFragment();
+//            FragmentManager manager = getSupportFragmentManager();
+//            FragmentTransaction transaction = manager.beginTransaction();
+//            transaction.add(R.id.dest1_holder, daFragment, "Destination 1 autocomplete box");
+//            transaction.commit();
+//            destCount++;
+//        }
+//    }
 }

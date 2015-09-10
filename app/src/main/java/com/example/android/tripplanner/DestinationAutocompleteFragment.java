@@ -54,7 +54,7 @@ public class DestinationAutocompleteFragment
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-    // Construct a GoogleApiClient for the {@link Places#GEO_DATA_API} using AutoManage
+        // Construct a GoogleApiClient for the {@link Places#GEO_DATA_API} using AutoManage
         // functionality, which automatically sets up the API client to handle Activity lifecycle
         // events. If your activity does not extend FragmentActivity, make sure to call connect()
         // and disconnect() explicitly.
@@ -90,10 +90,6 @@ public class DestinationAutocompleteFragment
                 mAutocompleteView.setText("");
             }
         });
-
-
-
-
 
     }
 

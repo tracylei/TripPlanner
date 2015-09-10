@@ -13,6 +13,9 @@
     <string name="how_long_is_your_trip">"How long is your trip?"</string>
     <string name="what_is_your_budget">"What is your budget?</string>
     <string name="enter_number_of_days">"Enter # of days"</string>
+    <string name="name_your_trip">"What is the name of your trip?"</string>
+    <string name="create_trip">"Create Trip"</string>
+    <string name="enter_trip_name">"Enter trip name"</string>
 
     <!-- getString(String, Object...) does not support HTML tags directly, they need to be encoded first.
 Original string: <b>%1$s</b><br/><i>Place Id: %2$s</i><br/>Address: %3$s<br/>Phone: %4$s<br/>Website: %5$s-->

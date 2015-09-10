@@ -107,6 +107,7 @@ public class PlaceAutocompleteAdapter
                 if (constraint != null) {
                     // Query the autocomplete API for the (constraint) search string.
                     mResultList = getAutocomplete(constraint);
+
                     if (mResultList != null) {
                         // The API successfully returned results.
                         results.values = mResultList;
@@ -145,8 +146,9 @@ public class PlaceAutocompleteAdapter
      * @see Places#GEO_DATA_API#getAutocomplete(CharSequence)
      */
     private ArrayList<PlaceAutocomplete> getAutocomplete(CharSequence constraint) {
+
         if (mGoogleApiClient.isConnected()) {
-            Log.i(TAG, "Starting autocomplete query for: " + constraint);
+//            Log.i(TAG, "Starting autocomplete query for:" + constraint);
 
             // Submit the query to the autocomplete API and retrieve a PendingResult that will
             // contain the results when the query completes.
@@ -165,13 +167,13 @@ public class PlaceAutocompleteAdapter
             if (!status.isSuccess()) {
                 Toast.makeText(getContext(), "Error contacting API: " + status.toString(),
                         Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "Error getting autocomplete prediction API call: " + status.toString());
+//                Log.e(TAG, "Error getting autocomplete prediction API call: " + status.toString());
                 autocompletePredictions.release();
                 return null;
             }
 
-            Log.i(TAG, "Query completed. Received " + autocompletePredictions.getCount()
-                    + " predictions.");
+//            Log.i(TAG, "Query completed. Received " + autocompletePredictions.getCount()
+//                    + " predictions.");
 
             // Copy the results into our own data structure, because we can't hold onto the buffer.
             // AutocompletePrediction objects encapsulate the API response (place ID and description).
@@ -190,7 +192,7 @@ public class PlaceAutocompleteAdapter
 
             return resultList;
         }
-        Log.e(TAG, "Google API client is not connected for autocomplete query.");
+//        Log.e(TAG, "Google API client is not connected for autocomplete query.");
         return null;
     }
 
