@@ -37,8 +37,7 @@ public class DatabaseAdapter{
             private static final String NUM_DAYS = "number_of_days";
             private static final String BUDGET = "budget";
             private Context context;
-            private static final String CREATE_TABLE = "CREATE TABLE Trips (_id INTEGER PRIMARY" +
-                    "KEY AUTOINCREMENT, trip_name TEXT, number_of_days INTEGER, budget INTEGER);";
+            private static final String CREATE_TABLE = "CREATE TABLE Trips (_id INTEGER PRIMARY KEY AUTOINCREMENT, trip_name TEXT, number_of_days INTEGER, budget INTEGER);";
 //                    "CREATE TABLE "
 //                            + TABLE_NAME +
 //                            " ( "+ UID +
