@@ -44,6 +44,7 @@ public class PlanTrip extends AppCompatActivity {
         numDays = (EditText)findViewById(R.id.num_days);
         budget = (EditText)findViewById(R.id.budget);
         dbAdapter = new DatabaseAdapter(this);
+
     }
 
     public void createTrip (View view){
