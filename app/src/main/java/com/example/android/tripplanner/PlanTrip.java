@@ -1,9 +1,8 @@
 package com.example.android.tripplanner;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -29,14 +28,6 @@ public class PlanTrip extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.option2_plan_trip);
 
-        PlaceAutocompleteFragment paFragment = new PlaceAutocompleteFragment();
-        DestinationAutocompleteFragment daFragment = new DestinationAutocompleteFragment();
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.add(R.id.starting_place_holder, paFragment, "Starting place autocomplete box");
-        transaction.add(R.id.dest1_holder, daFragment, "Destination 1 autocomplete box");
-        transaction.commit();
-
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
@@ -48,7 +39,7 @@ public class PlanTrip extends AppCompatActivity {
     }
 
     public void createTrip (View view){
-        long id = dbAdapter.insertData(tripName.getText().toString(),
+        long id = dbAdapter.createTrip(tripName.getText().toString(),
                 Integer.parseInt(numDays.getText().toString()),
                 Integer.parseInt(budget.getText().toString()));
         if (id == -1){
@@ -57,16 +48,8 @@ public class PlanTrip extends AppCompatActivity {
         else{
             ToastMessage.message(this,"Trip added successfully");
         }
+        Intent intent = new Intent(this, DisplayTrips.class);
+        startActivity(intent);
     }
-//    //Plus button click on fragment
-//    public void addDest(View v) {
-//        if (destCount < 6) {
-//            DestinationAutocompleteFragment daFragment = new DestinationAutocompleteFragment();
-//            FragmentManager manager = getSupportFragmentManager();
-//            FragmentTransaction transaction = manager.beginTransaction();
-//            transaction.add(R.id.dest1_holder, daFragment, "Destination 1 autocomplete box");
-//            transaction.commit();
-//            destCount++;
-//        }
-//    }
+
 }
