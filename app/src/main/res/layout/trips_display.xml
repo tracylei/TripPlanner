@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/trip_plan_screen2"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <include layout="@layout/enter_address_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/secondNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
