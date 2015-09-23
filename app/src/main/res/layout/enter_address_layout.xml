@@ -1,43 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/trip_plan_screen2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/where_are_you_starting_from"
-        android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/abc_text_size_medium_material"/>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:id="@+id/starting_place_holder">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include layout="@layout/app_bar"
+            android:id="@+id/toolbar"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/where_are_you_starting_from"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/abc_text_size_medium_material"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:id="@+id/starting_place_holder">
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/where_do_you_plan_to_go"
+            android:layout_margin="16dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="@dimen/abc_text_size_medium_material"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:id="@+id/dest1_holder">
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:id="@+id/additional_dest_holder">
+        </LinearLayout>
+
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/where_do_you_plan_to_go"
-        android:layout_margin="16dp"
-        android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/abc_text_size_medium_material"/>
-    <LinearLayout
+    <Button
+        android:id="@+id/secondNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:id="@+id/dest1_holder">
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:id="@+id/additional_dest_holder">
-    </LinearLayout>
+        android:text="@string/next"
+        android:layout_alignParentBottom="true"/>
 
-</LinearLayout>
+</RelativeLayout>

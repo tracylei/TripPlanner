@@ -2,7 +2,6 @@ package com.example.android.tripplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -49,17 +48,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /** Called when the user clicks the "My Trips" button */
-    public void displayTrips(View view){
-        Intent intent = new Intent (this, DisplayTrips.class);
+    public void displayTrips(View view) {
+        Intent intent = new Intent(this, DisplayTrips.class);
+        startActivity(intent);
     }
-
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-        }
-    }
-
 }

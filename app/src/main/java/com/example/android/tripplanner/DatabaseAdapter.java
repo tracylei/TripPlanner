@@ -11,28 +11,50 @@ import android.util.Log;
  * Created by tracylei on 2015-09-06.
  */
 public class DatabaseAdapter {
-        // Logcat tag
-        private static final String LOG = "DatabaseAdapter";
-        DatabaseHelper helper;
-        Context ct;
-        public DatabaseAdapter(Context context){
-            Log.i(LOG, "Adapter ctor");
-            helper = new DatabaseHelper(context);
-            helper.getWritableDatabase();
-            ct = context;
-        }
+    // Logcat tag
+private static final String LOG = "DatabaseAdapter";
+    DatabaseHelper helper;
+    SQLiteDatabase db;
+    Context ct;
 
-        public long createTrip(String tripName, int numDays, int budget){
-            Log.i(LOG, "Inserting trip data");
-            SQLiteDatabase db = helper.getWritableDatabase();
-            ContentValues cv = new ContentValues();
-            cv.put(DatabaseHelper.KEY_TRIP_NAME, tripName);
-            cv.put(DatabaseHelper.KEY_NUM_DAYS, numDays);
-            cv.put(DatabaseHelper.KEY_BUDGET, budget);
-            //Returns id corresponding to the newly inserted row
-            return db.insert(DatabaseHelper.TABLE_TRIPS, null, cv);
-        }
+    public DatabaseAdapter(Context context){
+        Log.i(LOG, "Adapter ctor");
+        helper = new DatabaseHelper(context);
+        db = helper.getWritableDatabase();
+        ct = context;
+    }
 
+    public long createTrip(Trip trip){
+        Log.i(LOG, "Creating new trip");
+        ContentValues cv = new ContentValues();
+        cv.put(DatabaseHelper.KEY_TRIP_NAME, trip.getTripName());
+        cv.put(DatabaseHelper.KEY_NUM_DAYS, trip.getNumDays());
+        cv.put(DatabaseHelper.KEY_BUDGET, trip.getBudget());
+        //Returns id corresponding to the newly inserted row
+        long trip_id = db.insert(DatabaseHelper.TABLE_TRIPS, null, cv);
+        trip.setID(trip_id);
+        return trip_id;
+    }
+
+    public long createDestination (Destination dest, Long tripID){
+        Log.i(LOG, "Creating new destination in trip: " + tripID);
+        ContentValues cv = new ContentValues();
+        cv.put(DatabaseHelper.KEY_PLACE, dest.getLocation());
+
+        long dest_id = db.insert(DatabaseHelper.TABLE_DEST, null, cv);
+
+        linkDestToTrip(tripID, dest_id);
+
+        return dest_id;
+    }
+
+    public long linkDestToTrip(long trip_id, long dest_id){
+        Log.i(LOG, "Linking dest_id " + dest_id + " to trip_id " + trip_id);
+        ContentValues cv = new ContentValues();
+        cv.put(DatabaseHelper.KEY_TRIP_ID, trip_id);
+        cv.put(DatabaseHelper.KEY_DEST_ID, dest_id);
+        return db.insert(DatabaseHelper.TABLE_TRIP_DEST, null, cv);
+    }
 
 
 

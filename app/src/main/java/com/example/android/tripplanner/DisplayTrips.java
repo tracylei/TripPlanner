@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 /**
@@ -11,10 +13,15 @@ import android.support.v7.widget.Toolbar;
  */
 public class DisplayTrips extends AppCompatActivity {
     Toolbar toolbar;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private DatabaseAdapter db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.trips_display);
+        setContentView(R.layout.option1_trips_display);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -25,6 +32,16 @@ public class DisplayTrips extends AppCompatActivity {
         transaction.add(R.id.starting_place_holder, paFragment, "Starting place autocomplete box");
         transaction.add(R.id.dest1_holder, daFragment, "Destination 1 autocomplete box");
         transaction.commit();
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+
+        //Layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        //Adapter
+        mAdapter = new RecyclerAdapter(db);
+        mRecyclerView.setAdapter(mAdapter);
 
     }
 
